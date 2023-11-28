@@ -6,6 +6,7 @@ package socketschat;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -17,35 +18,18 @@ import java.util.logging.Logger;
  *
  * @author Juanma
  */
-public class Cliente extends javax.swing.JFrame {
+public class Cliente extends javax.swing.JFrame{
+    
+    private static Socket socketCliente;
+    private static DataInputStream dISCliente;
+    private static DataOutputStream dOSCliente;
 
     /**
      * Creates new form Cliente
      */
     public Cliente() {
-        initComponents();
-        enviarCliente.addActionListener((ActionEvent e) -> {
-
-            String textoEscrito = textoCliente.getText();
-
-            try {
-
-                Socket socketCliente = new Socket("127.0.0.1", 1234);
-                DataOutputStream dOS = new DataOutputStream(socketCliente.getOutputStream());
-
-                dOS.writeUTF(textoEscrito);
-                textoEscrito = textoCliente.getText();
-                
-                if ("salir".equalsIgnoreCase(textoEscrito)) {
-                    dOS.close();
-                    System.exit(0);
-                }
-
-            } catch (IOException ex) {
-                Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        });
+        initComponents();  
+         
     }
 
     /**
@@ -116,7 +100,25 @@ public class Cliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enviarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarClienteActionPerformed
-        // TODO add your handling code here:
+        String textoEscrito = textoCliente.getText();
+
+            try {
+          
+                dOSCliente = new DataOutputStream(socketCliente.getOutputStream());
+
+                dOSCliente.writeUTF(textoEscrito);
+                textoCliente.setText("");
+                
+                
+                if ("salir".equalsIgnoreCase(textoEscrito)) {
+                    socketCliente.close();
+                    dOSCliente.close();
+                    System.exit(0);
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_enviarClienteActionPerformed
 
     /**
@@ -152,14 +154,37 @@ public class Cliente extends javax.swing.JFrame {
                 new Cliente().setVisible(true);
             }
         });
+        
+        
+        
+        try {     
+            boolean salir = false;
+            socketCliente = new Socket("127.0.0.1", 1234); 
+            dISCliente = new DataInputStream(socketCliente.getInputStream());
+            while (!salir) {                
+                
+                String recibeTexto = dISCliente.readUTF();
+                
+                mostrarTextoCliente.append("\nSERVIDOR: " + recibeTexto);
+                
+                 if ("SERVIDOR: salir".equalsIgnoreCase(recibeTexto)) {   
+                    socketCliente.close();
+                    dISCliente.close();
+                    salir=true;
 
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton enviarCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea mostrarTextoCliente;
+    private static javax.swing.JTextArea mostrarTextoCliente;
     private javax.swing.JTextField textoCliente;
     // End of variables declaration//GEN-END:variables
+
 }

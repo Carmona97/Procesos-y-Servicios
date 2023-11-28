@@ -4,13 +4,16 @@
  */
 package socketschat;
 
+import java.awt.event.ActionEvent;
 import java.io.DataInput;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Action;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -18,18 +21,25 @@ import javax.swing.JPanel;
  *
  * @author Juanma
  */
-public class Servidor extends javax.swing.JFrame implements Runnable {
+public class Servidor extends javax.swing.JFrame{
 
+    private static Socket socketServidor;
+    private static ServerSocket miServidor;
+    private static DataInputStream dISServidor;
+    private static DataOutputStream dOSServidor;
     /**
      * Creates new form Servidor
      */
     public Servidor() {
         initComponents();
-
-        Thread hilo = new Thread(this);
-
-        hilo.start();
-        
+    }
+    
+    public Servidor(int puerto){
+        try {
+            this.miServidor= new ServerSocket(puerto);
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -43,7 +53,7 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         mostrarTextoServidor = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
+        textoServidor = new javax.swing.JTextField();
         enviarServidor = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -73,7 +83,7 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textoServidor, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(enviarServidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -91,7 +101,7 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
+                    .addComponent(textoServidor)
                     .addComponent(enviarServidor, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -100,7 +110,26 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enviarServidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarServidorActionPerformed
-        // TODO add your handling code here:
+        String textoEscrito = textoServidor.getText();
+
+            try {
+          
+                dOSServidor = new DataOutputStream(socketServidor.getOutputStream());
+
+                dOSServidor.writeUTF(textoEscrito);            
+                textoServidor.setText("");
+                
+                
+                if ("salir".equalsIgnoreCase(textoEscrito)) {
+                    miServidor.close();
+                    socketServidor.close();
+                    dOSServidor.close();
+                    System.exit(0);
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_enviarServidorActionPerformed
 
     /**
@@ -138,46 +167,37 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
             }
 
         });
+        
+        Servidor servidor = new Servidor(1234);
+        try {
+            boolean salir = false;
+            socketServidor = miServidor.accept();
+            dISServidor = new DataInputStream(socketServidor.getInputStream());
+            while (!salir) {                
+                
+                String recibeTexto = dISServidor.readUTF();
+                
+                mostrarTextoServidor.append("\nCLIENTE: " + recibeTexto);
+                
+                 if ("CLIENTE: salir".equalsIgnoreCase(recibeTexto)) {   
+                    socketServidor.close();
+                    dISServidor.close();
+                    salir=true;
+
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton enviarServidor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextArea mostrarTextoServidor;
+    private static javax.swing.JTextArea mostrarTextoServidor;
+    private javax.swing.JTextField textoServidor;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void run() {
-
-        try {
-            
-            boolean salir = false;
-            ServerSocket miServidor = new ServerSocket(1234);
-            
-            while (!salir) {                
-                Socket miSocket = miServidor.accept();
-                DataInputStream dIS = new DataInputStream(miSocket.getInputStream());
-                String recibeTexto = dIS.readUTF();
-                
-                mostrarTextoServidor.append("\nCLIENTE: " + recibeTexto);
-                
-                if ("salir".equalsIgnoreCase(recibeTexto)) {
-                    miSocket.close();
-                    miServidor.close();
-                    salir=true;
-                    JOptionPane mensajeCierre = new JOptionPane();
-                    
-                    mensajeCierre.showMessageDialog(rootPane, "Se ha salido de la aplicacion");
-
-                }
-            }
-            
-            System.exit(0);
-
-        } catch (IOException ex) {
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 }
