@@ -29,14 +29,10 @@ public class CarmonaRuizUDPServidor {
             byte[] bufferLectura = new byte[3];
             DatagramPacket datagramaEntrada = new DatagramPacket(bufferLectura, bufferLectura.length);
             socket.receive(datagramaEntrada);
-
             String letrasComienzo = new String(bufferLectura, 0, datagramaEntrada.getLength());
-
-            System.out.println("(Servidor) Letras recibidas: " + letrasComienzo);
-        
+            System.out.println("(Servidor) Letras recibidas: " + letrasComienzo);      
             String palabrasConLetra = obtenerPalabrasConLetra(letrasComienzo);
             byte[] mensajeEnviado = palabrasConLetra.getBytes();
-
             DatagramPacket datagramaSalida = new DatagramPacket(mensajeEnviado, mensajeEnviado.length,datagramaEntrada.getAddress(),datagramaEntrada.getPort());
             socket.send(datagramaSalida);
 

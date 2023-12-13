@@ -27,18 +27,13 @@ public class CarmonaRuizUDPCliente {
             Scanner scanner = new Scanner(System.in);
             System.out.print("(Cliente): Ingrese 3 o menos letras para ver las palabras del servidor que tienen rima consonante con esas letras: ");
             String strMensaje = scanner.nextLine();
-
             InetAddress hostServidor = InetAddress.getByName("localhost");
             int puertoServidor = 12355;
-
             byte[] mensaje = strMensaje.getBytes();
-            DatagramPacket peticion = new DatagramPacket(mensaje, mensaje.length,
-                    hostServidor, puertoServidor);
+            DatagramPacket peticion = new DatagramPacket(mensaje, mensaje.length,hostServidor, puertoServidor);
             socketUDP.send(peticion);
-
             byte[] buffer = new byte[4096]; 
-            DatagramPacket respuesta = new DatagramPacket(buffer, buffer.length,
-                    hostServidor, puertoServidor);
+            DatagramPacket respuesta = new DatagramPacket(buffer, buffer.length,hostServidor, puertoServidor);
             socketUDP.receive(respuesta);
             System.out.println("(Cliente): Palabras recibidas:\n" + new String(buffer, 0, respuesta.getLength()));
 
