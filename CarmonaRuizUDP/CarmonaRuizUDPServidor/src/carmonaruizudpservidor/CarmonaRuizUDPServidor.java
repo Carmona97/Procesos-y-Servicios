@@ -47,7 +47,7 @@ public class CarmonaRuizUDPServidor {
             e.printStackTrace();
         }
     }
-    private static String obtenerPalabrasConLetra(String letrasComienzo) throws IOException { 
+    public static String obtenerPalabrasConLetra(String letrasComienzo) throws IOException { 
     
         File diccionario = new File("src\\carmonaruizudpservidor\\diccionario.txt");
         Scanner lectorArchivo = new Scanner(diccionario);
