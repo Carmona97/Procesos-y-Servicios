@@ -29,9 +29,9 @@ public class CarmonaRuizUDPServidor {
             byte[] bufferLectura = new byte[3];
             DatagramPacket datagramaEntrada = new DatagramPacket(bufferLectura, bufferLectura.length);
             socket.receive(datagramaEntrada);
-            String letrasComienzo = new String(bufferLectura, 0, datagramaEntrada.getLength());
-            System.out.println("(Servidor) Letras recibidas: " + letrasComienzo);      
-            String palabrasConLetra = obtenerPalabrasConLetra(letrasComienzo);
+            String letras = new String(bufferLectura, 0, datagramaEntrada.getLength());
+            System.out.println("(Servidor) Letras recibidas: " + letras);      
+            String palabrasConLetra = obtenerPalabrasConLetra(letras);
             byte[] mensajeEnviado = palabrasConLetra.getBytes();
             DatagramPacket datagramaSalida = new DatagramPacket(mensajeEnviado, mensajeEnviado.length,datagramaEntrada.getAddress(),datagramaEntrada.getPort());
             socket.send(datagramaSalida);
@@ -43,7 +43,7 @@ public class CarmonaRuizUDPServidor {
             e.printStackTrace();
         }
     }
-    public static String obtenerPalabrasConLetra(String letrasComienzo) throws IOException { 
+    public static String obtenerPalabrasConLetra(String letras) throws IOException { 
     
         File diccionario = new File("src\\carmonaruizudpservidor\\diccionario.txt");
         Scanner lectorArchivo = new Scanner(diccionario);
@@ -52,13 +52,13 @@ public class CarmonaRuizUDPServidor {
 
         do {
             String linea = lectorArchivo.nextLine();
-            if (linea.endsWith(letrasComienzo)) {
+            if (linea.endsWith(letras)) {
                 mostrarPalabras += linea + "\n";
                 contador++;
             }
         } while (lectorArchivo.hasNext());
         lectorArchivo.close();
-        mostrarPalabras += "Se han encontrado " + contador + " palabras con la terminación -"+letrasComienzo;
+        mostrarPalabras += "Se han encontrado " + contador + " palabras con la terminación -"+letras;
         return mostrarPalabras;
     }
     
