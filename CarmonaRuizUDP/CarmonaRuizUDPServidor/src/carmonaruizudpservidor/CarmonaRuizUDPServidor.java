@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
@@ -30,7 +29,7 @@ public class CarmonaRuizUDPServidor {
             byte[] bufferLectura = new byte[3];
             DatagramPacket datagramaEntrada = new DatagramPacket(bufferLectura, bufferLectura.length);
             socket.receive(datagramaEntrada);
-            String letras = new String(bufferLectura, StandardCharsets.UTF_8);
+            String letras = new String(bufferLectura, 0, datagramaEntrada.getLength());
             System.out.println("(Servidor) Letras recibidas: " + letras);      
             String palabrasConLetra = obtenerPalabrasConLetra(letras);
             byte[] mensajeEnviado = palabrasConLetra.getBytes();

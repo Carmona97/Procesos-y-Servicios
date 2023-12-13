@@ -25,19 +25,27 @@ public class CarmonaRuizUDPCliente {
             socketUDP = new DatagramSocket();
 
             Scanner scanner = new Scanner(System.in);
-            System.out.print("(Cliente): Ingrese 3 o menos letras para ver las palabras del servidor que tienen rima consonante con esas letras: ");
-            String strMensaje = scanner.nextLine();
-            InetAddress hostServidor = InetAddress.getByName("localhost");
-            int puertoServidor = 12355;
-            byte[] mensaje = strMensaje.getBytes();
-            DatagramPacket peticion = new DatagramPacket(mensaje, mensaje.length,hostServidor, puertoServidor);
-            socketUDP.send(peticion);
-            byte[] buffer = new byte[4096]; 
-            DatagramPacket respuesta = new DatagramPacket(buffer, buffer.length,hostServidor, puertoServidor);
-            socketUDP.receive(respuesta);
-            System.out.println("(Cliente): Palabras recibidas:\n" + new String(buffer, 0, respuesta.getLength()));
+            String strMensaje = "";
+            do {                
+                System.out.print("(Cliente): Ingrese 3 letras para ver las palabras del servidor que tienen rima consonante con esas letras: ");
+                strMensaje = scanner.next();
+                if (strMensaje.length() != 3) {
+                    System.out.println("No es una cantidad válida de letras, vuelva a intentarlo");
+                } else {
+                    InetAddress hostServidor = InetAddress.getByName("localhost");
+                    int puertoServidor = 12355;
+                    byte[] mensaje = strMensaje.getBytes();
+                    DatagramPacket peticion = new DatagramPacket(mensaje, mensaje.length, hostServidor, puertoServidor);
+                    socketUDP.send(peticion);
+                    byte[] buffer = new byte[4096];                    
+                    DatagramPacket respuesta = new DatagramPacket(buffer, buffer.length, hostServidor, puertoServidor);
+                    socketUDP.receive(respuesta);
+                    System.out.println("(Cliente): Palabras recibidas:\n" + new String(buffer, 0, respuesta.getLength()));
+                    
+                    socketUDP.close();
+                }
+            } while ( strMensaje.length() != 3);
 
-            socketUDP.close();
 
         } catch (SocketException e) {
             e.printStackTrace();
