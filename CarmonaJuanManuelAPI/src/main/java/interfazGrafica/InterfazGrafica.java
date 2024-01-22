@@ -31,11 +31,11 @@ public class InterfazGrafica extends javax.swing.JFrame {
         athletic = new javax.swing.JButton();
         alaves = new javax.swing.JButton();
         alcorcon = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        atMadrid = new javax.swing.JButton();
+        albacete = new javax.swing.JButton();
+        antequera = new javax.swing.JButton();
+        almeria = new javax.swing.JButton();
+        arandina = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WIKIFUTBOL");
@@ -60,6 +60,11 @@ public class InterfazGrafica extends javax.swing.JFrame {
 
         athletic.setBackground(new java.awt.Color(255, 255, 204));
         athletic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/athletic.png"))); // NOI18N
+        athletic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                athleticActionPerformed(evt);
+            }
+        });
         jPanel1.add(athletic);
 
         alaves.setBackground(new java.awt.Color(255, 255, 204));
@@ -82,25 +87,50 @@ public class InterfazGrafica extends javax.swing.JFrame {
         });
         jPanel1.add(alcorcon);
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 204));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atMadrid.png"))); // NOI18N
-        jPanel1.add(jButton2);
+        atMadrid.setBackground(new java.awt.Color(255, 255, 204));
+        atMadrid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atMadrid.png"))); // NOI18N
+        atMadrid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atMadridActionPerformed(evt);
+            }
+        });
+        jPanel1.add(atMadrid);
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 204));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/albacete.png"))); // NOI18N
-        jPanel1.add(jButton4);
+        albacete.setBackground(new java.awt.Color(255, 255, 204));
+        albacete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/albacete.png"))); // NOI18N
+        albacete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                albaceteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(albacete);
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 204));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/antequera.png"))); // NOI18N
-        jPanel1.add(jButton3);
+        antequera.setBackground(new java.awt.Color(255, 255, 204));
+        antequera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/antequera.png"))); // NOI18N
+        antequera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                antequeraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(antequera);
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 204));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/almeria.png"))); // NOI18N
-        jPanel1.add(jButton5);
+        almeria.setBackground(new java.awt.Color(255, 255, 204));
+        almeria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/almeria.png"))); // NOI18N
+        almeria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                almeriaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(almeria);
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 204));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/arandina.png"))); // NOI18N
-        jPanel1.add(jButton6);
+        arandina.setBackground(new java.awt.Color(255, 255, 204));
+        arandina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/arandina.png"))); // NOI18N
+        arandina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arandinaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(arandina);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,17 +147,48 @@ public class InterfazGrafica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void barcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barcaActionPerformed
-        // TODO add your handling code here:
+        cambioDeVentanaDatos();
     }//GEN-LAST:event_barcaActionPerformed
 
     private void alavesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alavesActionPerformed
-        // TODO add your handling code here:
+       cambioDeVentanaDatos();
     }//GEN-LAST:event_alavesActionPerformed
 
     private void alcorconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alcorconActionPerformed
-        // TODO add your handling code here:
+        cambioDeVentanaDatos();
     }//GEN-LAST:event_alcorconActionPerformed
 
+    private void athleticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_athleticActionPerformed
+        cambioDeVentanaDatos();
+    }//GEN-LAST:event_athleticActionPerformed
+
+    private void atMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atMadridActionPerformed
+        cambioDeVentanaDatos();
+    }//GEN-LAST:event_atMadridActionPerformed
+
+    private void albaceteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_albaceteActionPerformed
+        cambioDeVentanaDatos();
+    }//GEN-LAST:event_albaceteActionPerformed
+
+    private void antequeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_antequeraActionPerformed
+        cambioDeVentanaDatos();
+    }//GEN-LAST:event_antequeraActionPerformed
+
+    private void almeriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_almeriaActionPerformed
+        cambioDeVentanaDatos();
+    }//GEN-LAST:event_almeriaActionPerformed
+
+    private void arandinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arandinaActionPerformed
+        cambioDeVentanaDatos();
+    }//GEN-LAST:event_arandinaActionPerformed
+
+    public void cambioDeVentanaDatos(){
+        ventanaDatos nuevaVentana = new ventanaDatos();
+        
+        nuevaVentana.setVisible(true);
+        
+        this.dispose();
+    }
     /**
      * @param args the command line arguments
      */
@@ -165,14 +226,14 @@ public class InterfazGrafica extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alaves;
+    private javax.swing.JButton albacete;
     private javax.swing.JButton alcorcon;
+    private javax.swing.JButton almeria;
+    private javax.swing.JButton antequera;
+    private javax.swing.JButton arandina;
+    private javax.swing.JButton atMadrid;
     private javax.swing.JButton athletic;
     private javax.swing.JButton barca;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
