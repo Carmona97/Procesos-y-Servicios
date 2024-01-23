@@ -200,6 +200,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="nombreEquipo">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
               </Properties>
@@ -215,6 +216,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="nombreEstadio">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
               </Properties>
@@ -230,6 +232,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="fecha">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
               </Properties>
@@ -245,6 +248,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="capacidad">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
               </Properties>
@@ -260,6 +264,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="descripcion">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
               </Properties>
@@ -275,6 +280,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="localizacion">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
               </Properties>

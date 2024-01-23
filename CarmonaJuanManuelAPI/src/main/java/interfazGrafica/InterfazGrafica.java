@@ -4,6 +4,11 @@
  */
 package interfazGrafica;
 
+import com.mycompany.carmonajuanmanuelapi.Equipo;
+import com.mycompany.carmonajuanmanuelapi.PeticionHTTP;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author juanm
@@ -147,48 +152,61 @@ public class InterfazGrafica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void barcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barcaActionPerformed
-        cambioDeVentanaDatos();
+        realizarConsulta("Barcelona");
     }//GEN-LAST:event_barcaActionPerformed
 
     private void alavesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alavesActionPerformed
-       cambioDeVentanaDatos();
+        realizarConsulta("Alaves");
     }//GEN-LAST:event_alavesActionPerformed
 
     private void alcorconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alcorconActionPerformed
-        cambioDeVentanaDatos();
+        realizarConsulta("Alcorcon");
     }//GEN-LAST:event_alcorconActionPerformed
 
     private void athleticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_athleticActionPerformed
-        cambioDeVentanaDatos();
+        realizarConsulta("Athletic");
     }//GEN-LAST:event_athleticActionPerformed
 
     private void atMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atMadridActionPerformed
-        cambioDeVentanaDatos();
+        realizarConsulta("Atletico Madrid");
     }//GEN-LAST:event_atMadridActionPerformed
 
     private void albaceteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_albaceteActionPerformed
-        cambioDeVentanaDatos();
+        realizarConsulta("Albacete");
     }//GEN-LAST:event_albaceteActionPerformed
 
     private void antequeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_antequeraActionPerformed
-        cambioDeVentanaDatos();
+        realizarConsulta("Antequera");
     }//GEN-LAST:event_antequeraActionPerformed
 
     private void almeriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_almeriaActionPerformed
-        cambioDeVentanaDatos();
+        realizarConsulta("Almeria");
     }//GEN-LAST:event_almeriaActionPerformed
 
     private void arandinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arandinaActionPerformed
-        cambioDeVentanaDatos();
+        realizarConsulta("Arandina");
     }//GEN-LAST:event_arandinaActionPerformed
 
-    public void cambioDeVentanaDatos(){
+    private void realizarConsulta(String equipo) {
+        PeticionHTTP peticion = new PeticionHTTP();
+        Equipo equipoSeleccionado = null;
+        try {
+            equipoSeleccionado = peticion.equipoSeleccionado("https://www.thesportsdb.com/api/v1/json/3/", "searchteams.php?s=Soccer&t=", equipo);
+            cambioDeVentanaDatos(equipoSeleccionado);
+
+        } catch (Exception ex) {
+            System.out.println("Ocurrió un error al realizar la consulta: " + ex.getMessage());
+        }
+    }
+
+    public void cambioDeVentanaDatos(Equipo equipoSeleccionado) {
         ventanaDatos nuevaVentana = new ventanaDatos();
-        
+        nuevaVentana.obtenerDatosEquipo(equipoSeleccionado);
         nuevaVentana.setVisible(true);
-        
+
         this.dispose();
     }
+
     /**
      * @param args the command line arguments
      */

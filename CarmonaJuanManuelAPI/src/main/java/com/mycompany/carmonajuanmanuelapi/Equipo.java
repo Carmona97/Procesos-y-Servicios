@@ -10,6 +10,8 @@ import com.google.gson.annotations.SerializedName;
  * @author juanm
  */
 public class Equipo {
+    @SerializedName("idTeam")
+    private int idEquipo;
     
     @SerializedName("strTeam")
     private String nombreEquipo;
@@ -32,6 +34,10 @@ public class Equipo {
         
     public Equipo(){
         
+    }
+    
+    public int getIdEquipo() {
+        return idEquipo;
     }
     
     public String getNombreEquipo() {

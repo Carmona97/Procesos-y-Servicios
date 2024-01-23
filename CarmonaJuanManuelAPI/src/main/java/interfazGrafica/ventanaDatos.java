@@ -5,7 +5,7 @@
 package interfazGrafica;
 
 import com.mycompany.carmonajuanmanuelapi.Equipo;
-
+import com.mycompany.carmonajuanmanuelapi.PeticionHTTP;
 /**
  *
  * @author juanm
@@ -86,26 +86,32 @@ public class ventanaDatos extends javax.swing.JFrame {
             }
         });
 
+        nombreEquipo.setEditable(false);
         nombreEquipo.setColumns(20);
         nombreEquipo.setRows(5);
         jScrollPane1.setViewportView(nombreEquipo);
 
+        nombreEstadio.setEditable(false);
         nombreEstadio.setColumns(20);
         nombreEstadio.setRows(5);
         jScrollPane2.setViewportView(nombreEstadio);
 
+        fecha.setEditable(false);
         fecha.setColumns(20);
         fecha.setRows(5);
         jScrollPane3.setViewportView(fecha);
 
+        capacidad.setEditable(false);
         capacidad.setColumns(20);
         capacidad.setRows(5);
         jScrollPane4.setViewportView(capacidad);
 
+        descripcion.setEditable(false);
         descripcion.setColumns(20);
         descripcion.setRows(5);
         jScrollPane5.setViewportView(descripcion);
 
+        localizacion.setEditable(false);
         localizacion.setColumns(20);
         localizacion.setRows(5);
         jScrollPane6.setViewportView(localizacion);

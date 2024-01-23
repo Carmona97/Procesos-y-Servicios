@@ -33,7 +33,7 @@ public class PeticionHTTP {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(URI.create(direccion))
-                .headers("Content-Type","text-plain")
+                .headers("Content-Type","text/plain")
                 .setHeader("User-Agent","Mozilla/5.0")
                 .build();
         
