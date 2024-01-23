@@ -4,6 +4,8 @@
  */
 package interfazGrafica;
 
+import com.mycompany.carmonajuanmanuelapi.Equipo;
+
 /**
  *
  * @author juanm
@@ -36,17 +38,17 @@ public class ventanaDatos extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         menu = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        nombreEquipo = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        nombreEstadio = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        fecha = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        capacidad = new javax.swing.JTextArea();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
+        descripcion = new javax.swing.JTextArea();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
+        localizacion = new javax.swing.JTextArea();
 
         jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -56,7 +58,7 @@ public class ventanaDatos extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 600));
+        setResizable(false);
         setSize(new java.awt.Dimension(790, 600));
 
         jPanel1.setMinimumSize(new java.awt.Dimension(300, 300));
@@ -84,29 +86,29 @@ public class ventanaDatos extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        nombreEquipo.setColumns(20);
+        nombreEquipo.setRows(5);
+        jScrollPane1.setViewportView(nombreEquipo);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        nombreEstadio.setColumns(20);
+        nombreEstadio.setRows(5);
+        jScrollPane2.setViewportView(nombreEstadio);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        fecha.setColumns(20);
+        fecha.setRows(5);
+        jScrollPane3.setViewportView(fecha);
 
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jScrollPane4.setViewportView(jTextArea4);
+        capacidad.setColumns(20);
+        capacidad.setRows(5);
+        jScrollPane4.setViewportView(capacidad);
 
-        jTextArea5.setColumns(20);
-        jTextArea5.setRows(5);
-        jScrollPane5.setViewportView(jTextArea5);
+        descripcion.setColumns(20);
+        descripcion.setRows(5);
+        jScrollPane5.setViewportView(descripcion);
 
-        jTextArea6.setColumns(20);
-        jTextArea6.setRows(5);
-        jScrollPane6.setViewportView(jTextArea6);
+        localizacion.setColumns(20);
+        localizacion.setRows(5);
+        jScrollPane6.setViewportView(localizacion);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,7 +131,7 @@ public class ventanaDatos extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 2, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -137,7 +139,7 @@ public class ventanaDatos extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,9 +200,21 @@ public class ventanaDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
-        // TODO add your handling code here:
+        InterfazGrafica nuevaVentana = new InterfazGrafica();
+        
+        nuevaVentana.setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_menuActionPerformed
 
+    public void obtenerDatosEquipo(Equipo equipoSeleccionado){
+        nombreEquipo.setText(equipoSeleccionado.getNombreEquipo());
+        nombreEstadio.setText(equipoSeleccionado.getEstadio());
+        localizacion.setText(equipoSeleccionado.getLocalizacion());
+        descripcion.setText(equipoSeleccionado.getDescripcion());
+        capacidad.setText(String.valueOf(equipoSeleccionado.getCapacidadEstadio()));
+        fecha.setText(String.valueOf(equipoSeleccionado.getFundacionAno()));
+    }
     /**
      * @param args the command line arguments
      */
@@ -237,6 +251,9 @@ public class ventanaDatos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea capacidad;
+    private javax.swing.JTextArea descripcion;
+    private javax.swing.JTextArea fecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -250,13 +267,10 @@ public class ventanaDatos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextArea jTextArea6;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextArea localizacion;
     private javax.swing.JButton menu;
+    private javax.swing.JTextArea nombreEquipo;
+    private javax.swing.JTextArea nombreEstadio;
     // End of variables declaration//GEN-END:variables
 }
