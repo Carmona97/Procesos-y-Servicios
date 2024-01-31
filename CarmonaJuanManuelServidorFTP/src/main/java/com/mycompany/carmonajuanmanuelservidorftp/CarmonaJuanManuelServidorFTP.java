@@ -13,7 +13,7 @@ import java.io.IOException;
 public class CarmonaJuanManuelServidorFTP {
 
     public static void main(String[] args) throws IOException {
-        GestorFTPCarmona gestorFTP = new GestorFTPCarmona("127.0.0.1", 21, "juanma", "123");
+        GestorFTPCarmona gestorFTP = new GestorFTPCarmona("127.0.0.1", 21, "Usuario", "123");
         try {
             if (gestorFTP.conectar()) {
                 System.out.println("Conexion establecida");
