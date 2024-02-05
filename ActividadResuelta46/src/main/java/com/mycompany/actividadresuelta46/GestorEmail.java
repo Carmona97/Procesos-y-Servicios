@@ -115,16 +115,16 @@ public class GestorEmail {
 
         try {
 
-            String emailEmisor = "xxx@gmail.com";  // Cuenta Gmail completa de emisor
-            String passwordEmisor = "xxxx xxxx xxxx xxxx";  // Codigo de "Contraseñas de aplicacion"
+            String emailEmisor = "juanmacarmona97@gmail.com";  // Cuenta Gmail completa de emisor
+            String passwordEmisor = "utgx phzw fjeb szld";  // Codigo de "Contraseñas de aplicacion"
 
 
             GestorEmail gestorEmail = new GestorEmail();
-            gestorEmail.enviarMensajeTexto(emailEmisor, "richivilla15@hotmail.com",
+            gestorEmail.enviarMensajeTexto(emailEmisor, "spamcar97@gmail.com",
                     "Aviso de entrega de factura", "El importe de la factura"
                     + " es 113,72€", emailEmisor, passwordEmisor);
 
-            gestorEmail.enviarMensajeConAdjunto(emailEmisor, "richivilla15@hotmail.com",
+            gestorEmail.enviarMensajeConAdjunto(emailEmisor, "spamcar97@gmail.com",
                     "Aviso de entrega de factura", "El importe de la factura"
                     + " es 113,72€", emailEmisor, passwordEmisor,"Factura.pdf"
                             + "");
