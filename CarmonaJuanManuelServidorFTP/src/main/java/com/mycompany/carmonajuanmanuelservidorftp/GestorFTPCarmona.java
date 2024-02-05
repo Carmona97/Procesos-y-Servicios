@@ -68,7 +68,7 @@ public class GestorFTPCarmona {
     
      public boolean descargarFichero(String nombreFichero) throws IOException {
         boolean descargaExitosa = false;
-        String destinoFichero = "D:\\Programacion\\2 DAM\\FTPServer";
+        String destinoFichero = ".\\src\\main\\java\\com\\mycompany\\carmonajuanmanuelservidorftp\\Archivos";
         String rutaFichero = destinoFichero + nombreFichero;
 
         try (OutputStream oS = new FileOutputStream(rutaFichero)) {
